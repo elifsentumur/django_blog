@@ -9,6 +9,7 @@ psycopg2 = "*"
 django-autoslug = "*"
 pillow = "*"
 django-ckeditor = "*"
+python-decouple = "*"
 
 [dev-packages]
 

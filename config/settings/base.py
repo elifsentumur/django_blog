@@ -10,11 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -81,16 +84,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-DATABASES={
-   'default':{
-      'ENGINE':'django.db.backends.postgresql',
-      'NAME': 'django_blog',
-      'USER': 'postgres',
-      'PASSWORD':'admin',
-      'HOST': 'localhost',
-      'PORT':'5432',
-   }
-}
 
 
 
@@ -146,3 +139,31 @@ AUTH_USER_MODEL ='account.CustomUserModel'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR ,'media/')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+      'basit_ifade': {
+          'format': '{process:d} {thread:d} {asctime} {levelname} {message} {name}',
+          'style': '{'
+      }  
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'logs/konu_okuma.log',
+            'formatter': 'basit_ifade'
+        }
+    },
+    'loggers': {
+        'konu_okuma' : {
+            'handlers': ['console', 'file'],
+            'level': 'INFO'
+        }
+    }
+}
+

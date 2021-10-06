@@ -1,3 +1,6 @@
 __pycache__
 .vscode
 yazi_resimleri
+logs
+media
+.env
